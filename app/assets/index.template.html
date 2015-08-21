@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if IE 9]>    <html class="ie9"> <![endif]-->
+<!--[if !(IE)]><!--> <html> <!--<![endif]-->
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Cache-control" content="no-cache">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>React Scaffolding</title>
+
+
+  <link rel="stylesheet" type="text/css" href="{%=o.htmlWebpackPlugin.files.css%}">
+</head>
+<body>
+
+  <!--
+    Use a container for rendering and trashing the React App otherwise
+    other libs that might require to attach something to the dom could
+    end up getting its nodes detached or trashed due to react rendering
+  -->
+  <div id="reactApplication"></div>
+
+  <script type="text/javascript" src="{%=o.htmlWebpackPlugin.files.chunks['vendor'].entry%}"></script>
+  <script type="text/javascript" src="{%=o.htmlWebpackPlugin.files.chunks['app'].entry%}"></script>
+
+</body>
+</html>
