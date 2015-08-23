@@ -6,7 +6,9 @@ import {authenticate}     from "app/action_creators/session_action_creator";
 import {isTokenSet}       from "app/api/auth_token";
 
 
-const select = (state) => ({});
+const select = (state) => ({
+  authenticationError: state.session.authenticationError
+});
 
 /**
 * This is the entry point for any page that requires a logged in user
@@ -27,7 +29,11 @@ export default class LoginContainer extends Component {
   }
 
   render () {
-    return <Login onSubmit={this._handleSubmit.bind(this)} />;
+    return (
+      <Login onSubmit={this._handleSubmit.bind(this)}
+        authenticationError={this.props.authenticationError}
+      />
+    );
   }
 
   _handleSubmit ({email, password}) {

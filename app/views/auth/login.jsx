@@ -17,6 +17,8 @@ export default class Login extends Component {
         <h1>Enter your credentials</h1>
         <form onSubmit={this._handleSubmit.bind(this)}>
 
+          {this._renderAuthenticationErrors()}
+
           <input value={this.state.email} onChange={this._handleEmailChange.bind(this)}
             type="email" placeholder="Email" />
 
@@ -27,6 +29,12 @@ export default class Login extends Component {
         </form>
       </div>
     );
+  }
+
+  _renderAuthenticationErrors () {
+    if (this.props.authenticationError) {
+      return <div>{this.props.authenticationError}</div>
+    }
   }
 
   _handleSubmit (event) {

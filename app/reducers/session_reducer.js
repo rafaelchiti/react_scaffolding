@@ -3,7 +3,8 @@ import {storeToken} from "app/api/auth_token";
 
 const initialState = {
   authenticating: false,
-  authenticateError: null
+  authenticationError: null,
+  user: null
 };
 
 
@@ -15,14 +16,14 @@ export default function sessionReducer (state = initialState, action) {
   }
 
   if (action.type === Types.AUTHENTICATE.done) {
-    const newState = {authenticating: false};
+    const newState = {authenticating: false, user: action.apiResponse.user};
     const token = action.apiResponse.token;
-    storeToken(token);
     state = {...state, ...newState};
+    storeToken(token);
   }
 
   if (action.type === Types.AUTHENTICATE.fail) {
-    const newState = {authenticateError: action.apiError, authenticating: false};
+    const newState = {authenticationError: action.apiError, authenticating: false};
     state = {...state, ...newState};
   }
 
