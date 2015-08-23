@@ -1,8 +1,7 @@
 import createAsyncActionsTypes from "./utils/create_async_actions_types";
 
 const AsyncTypes = createAsyncActionsTypes([
-  "INITIALIZE_SESSION",
-  "LOGOUT"
+  "AUTHENTICATE"
 ]);
 
 export default {...AsyncTypes};

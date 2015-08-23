@@ -17,10 +17,10 @@ var webpackConfig = {
   },
   devServer: {
 
-    // If you have an API that you need to proxy then uncomment here.
-    // proxy: {
-    //   "/api/*": "http://teach.classdojo.dev:8080"
-    // },
+    // Configuration in case you need to proxy calls to an api
+    proxy: {
+      "/api/*": "http://localhost:5000"
+    },
 
     contentBase: "./build/dev_build"
   },

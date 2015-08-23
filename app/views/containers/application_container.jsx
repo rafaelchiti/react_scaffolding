@@ -1,6 +1,7 @@
 import React               from "react";
 import {connect}           from "react-redux";
 import {initializeSession} from "app/action_creators/session_action_creator";
+import {isTokenSet}        from "app/api/auth_token";
 
 const select = (state) => ({
   isInitializingSession: state.application.isInitializingSession,
@@ -19,31 +20,9 @@ export default class ApplicationContainer extends React.Component {
     router: React.PropTypes.object.isRequired
   }
 
-  componentWillMount () {
-    const {dispatch} = this.props;
-
-    dispatch(initializeSession());
-  }
-
-  componentWillUpdate(nextProps, nextState) {
-    const noSessionFound = this.props.isInitializingSession && (!nextProps.isInitializingSession && !nextProps.sessionValid);
-
-    if (noSessionFound) {
-      this.context.router.transitionTo("/login");
-    }
-  }
-
   render () {
-    let contents;
-
-    if (this.props.sessionValid) {
-      contents = this.props.children;
-    } else {
-      contents = "Loading...";
-    }
-
     return (
-      <div>{contents}</div>
+      <div>{this.props.children}</div>
     );
   }
 }

@@ -13,7 +13,7 @@ export default function renderRoutes(store, history, requireAuth) {
     <Router history={history}>
       <Route path="/" component={ApplicationContainer}>
 
-        <Route component={SecuredContentContainer} onEnter={requireAuth} >
+        <Route component={SecuredContentContainer} >
           <Route path="home" component={HomeContainer} />
         </Route>
 

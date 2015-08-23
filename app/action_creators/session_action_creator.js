@@ -1,13 +1,15 @@
-import Types from "app/action_types/session";
+import Types          from "app/action_types/session";
 
 import {
   fetchSession as fetchSessionCall,
+  authenticate as authenticateCall
 } from "app/api/api_calls";
 
 
-export function initializeSession () {
+
+export function authenticate (email, password) {
   return {
-    type: Types.INITIALIZE_SESSION,
-    callAPI: () => fetchSessionCall()
-  };
+    type: Types.AUTHENTICATE,
+    callAPI: () => authenticateCall({email, password})
+  }
 }

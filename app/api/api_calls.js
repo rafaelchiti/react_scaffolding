@@ -1,9 +1,13 @@
-
+import Api from "./api";
 
 const ApiCalls = {
 
-  fetchSession () {
-    console.log("Fetch session!");
+  authenticate ({email, password}) {
+    return Api.post({
+      path: "/authenticate",
+      body: {email: email, password: password},
+      ignoreAuthFailure: true
+    });
   }
 
 }
