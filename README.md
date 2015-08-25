@@ -14,6 +14,17 @@ An opinionated scaffolding with the following technical stack and configuration:
 
 The idea is to provide a base structure that enable consumers to start building freatures and deliver a production ready package of a Single Page App.
 
+## Getting started
+
+To start hacking simply do:
+
+```
+$ npm install
+$ make run
+```
+Point browser to http://localhost:9898
+
+For more detailed reference continue reading.
 
 ### Bundle process
 
