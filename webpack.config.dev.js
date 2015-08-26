@@ -38,8 +38,8 @@ var webpackConfig = {
       {test: /\.jsx?$/, exclude: /node_modules/, loaders: ["react-hot-loader", "babel-loader?optional=runtime&stage=0"]},
 
       {test: /\.json$/, loader: "json-loader"},
-      {test: /\.css$/,  loader: ExtractTextPlugin.extract("style-loader", "css-loader")},
-      {test: /\.styl$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader!stylus-loader")},
+      {test: /\.css$/,  loader: "style-loader!css-loader?modules"},
+      {test: /\.styl$/, loader: "style-loader!css-loader?modules!stylus-loader"},
       {test: /\.png/, loader: "file-loader?mimetype=image/png"},
       {test: /\.jpg/, loader: "file"},
       {test: /\.gif/, loader: "file"},
@@ -51,7 +51,7 @@ var webpackConfig = {
   resolve: {
 
     // Needed so you can require("a") instead of require("a.jsx")
-    extensions: ["", ".js", ".jsx", ".json", ".styl"],
+    extensions: ["", ".js", ".jsx", ".json", ".css", ".styl"],
 
     // Let us do things like require("app/stores/Channel")
     root: __dirname,
@@ -64,7 +64,6 @@ var webpackConfig = {
     }
   },
   plugins: [
-    new ExtractTextPlugin("app.bundle-[hash].css", {allChunks: true}),
     new WebpackNotifierPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.optimize.CommonsChunkPlugin({name: "vendor", filename: "vendor.bundle-[hash].js", minChunks: Infinity}),

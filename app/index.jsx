@@ -15,7 +15,6 @@ import "app/assets/stylesheets/base";
 // Make sure the static_content gets added to the bundle
 import "app/assets/static_content";
 
-
 const combinedReducers = combineReducers(reducers);
 
 let createStoreWithMiddleware = applyMiddleware(
@@ -44,4 +43,3 @@ class Root extends Component {
 
 
 React.render(<Root/>, document.getElementById("reactApplication"))
-

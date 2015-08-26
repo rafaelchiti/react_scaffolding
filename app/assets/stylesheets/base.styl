@@ -1,38 +1,42 @@
 @import '~app/assets/stylesheets/normalize'
-
-// Fonts
 @import '~app/assets/stylesheets/glyphicons'
 
+:global {
 
-html
-  box-sizing border-box
-  // Changing to this value so the rems are easier to calculate
-  // 1.4rem = 14px
-  // 2.4rem = 24px
-  font-size 62.5%
-  position relative
+  html {
+    box-sizing: border-box;
+    // Changing to this value so the rems are easier to calculate
+    // 1.4rem = 14px
+    // 2.4rem = 24px
+    font-size: 62.5%;
+    position: relative;
+  }
 
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
 
-*, *:before, *:after
-  box-sizing inherit
+  body {
+    position: relative;
+    font-family: 'ProximaNova', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 1.4rem;
+    // background-color: #F0EFEF;
+  }
 
-body
-  position: relative
-  font-family: 'ProximaNova', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size 1.4rem
-  background-color #F0EFEF
-  min-height 100vh
+  a {
+    text-decoration: none;
+    cursor: pointer;
+  }
 
-a
-  text-decoration none
-  cursor pointer
+  a, a:visited, a:hover, a:active {
+    color: inherit;
+  }
 
-a, a:visited, a:hover, a:active
-  color inherit
+  button {
+    cursor: pointer;
+  }
 
-button
-  cursor pointer
-
-*
-  box-sizing border-box
-
+  * {
+    box-sizing: border-box;
+  }
+}

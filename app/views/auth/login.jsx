@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import classNames from "./styles";
 
 export default class Login extends Component {
 
@@ -13,7 +14,7 @@ export default class Login extends Component {
 
   render () {
     return (
-      <div>
+      <div className={classNames.loginContainer}>
         <h1>Enter your credentials</h1>
         <form onSubmit={this._handleSubmit.bind(this)}>
 
@@ -25,7 +26,10 @@ export default class Login extends Component {
           <input value={this.state.password} onChange={this._handlePasswordChange.bind(this)}
             type="password" placeholder="Password" />
 
-          <input type="submit" value="Login" />
+          <div>
+            <input type="submit" value="Login" />
+          </div>
+
         </form>
       </div>
     );
@@ -51,5 +55,3 @@ export default class Login extends Component {
   }
 
 }
-
-
