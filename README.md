@@ -27,7 +27,7 @@ Point browser to http://localhost:9898
 
 For more detailed reference continue reading.
 
-## Rational behing the stack
+## Rational behind the stack
 
 Check the resources [section](https://github.com/rafaelchiti/react_scaffolding/wiki/resources) for talks and explanations on WHY the stack I present here.
 
