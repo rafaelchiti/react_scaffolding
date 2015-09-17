@@ -7,7 +7,7 @@ import LoginContainer                  from "app/views/containers/login_containe
 import HomeContainer                   from "app/views/containers/home_container";
 
 
-export default function renderRoutes(store, history, requireAuth) {
+export default function renderRoutes(store, history) {
 
   return (
     <Router history={history}>

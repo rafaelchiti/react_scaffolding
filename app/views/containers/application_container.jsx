@@ -16,10 +16,6 @@ const select = (state) => ({
 @connect(select)
 export default class ApplicationContainer extends React.Component {
 
-  static contextTypes = {
-    router: React.PropTypes.object.isRequired
-  }
-
   render () {
     return (
       <div>{this.props.children}</div>

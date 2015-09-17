@@ -1,10 +1,10 @@
 import React, {PropTypes, Component}                   from 'react'
 import {Router, Route, Link}                           from "react-router";
-import HashHistory                                     from "react-router/lib/HashHistory";
+import createHashHistory                               from 'history/lib/createHashHistory';
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 import {Provider}                                      from "react-redux";
 import renderRoutes                                    from "app/views/routes";
-import loggerMiddleware                                from "app/middleware/logger_middleware";
+import createLogger                                    from 'redux-logger';
 import asyncActionsMiddleware                          from "app/middleware/async_actions_middleware";
 // Reducers
 import * as reducers                                   from "app/reducers";
@@ -19,7 +19,9 @@ const combinedReducers = combineReducers(reducers);
 
 let createStoreWithMiddleware = applyMiddleware(
   asyncActionsMiddleware,
-  loggerMiddleware
+  createLogger({
+    predicate: (getState, action) => process.env.NODE_ENV !== "production"
+  })
 )(createStore);
 
 let store = createStoreWithMiddleware(combinedReducers);
@@ -29,7 +31,7 @@ class Root extends Component {
 
   constructor(props) {
     super(props);
-    this.history = new HashHistory();
+    this.history = createHashHistory();
   }
 
   render () {

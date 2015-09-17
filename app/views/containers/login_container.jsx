@@ -16,15 +16,9 @@ const select = (state) => ({
 @connect(select)
 export default class LoginContainer extends Component {
 
-  static contextTypes = {
-    router: React.PropTypes.object.isRequired
-  }
-
   componentWillMount() {
-    const {router} = this.context;
-
     if (isTokenSet()) {
-      router.transitionTo("/home");
+      this.props.history.pushState(null, "/home");
     }
   }
 
@@ -37,14 +31,12 @@ export default class LoginContainer extends Component {
   }
 
   _handleSubmit ({email, password}) {
-    const {router} = this.context;
-
     const {dispatch} = this.props;
 
     dispatch(authenticate(email, password)).then((result) => {
       if (result.apiError) return;
 
-      router.transitionTo("/home");
+      this.props.history.pushState(null, "/home");
     });
   }
 
