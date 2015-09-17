@@ -11,6 +11,7 @@ An opinionated scaffolding with the following technical stack and configuration:
 * Seamless Immutable
 * Hot module replacement
 * Babel
+* Testing mocha + shallow rendering with React
 
 The idea is to provide a base structure that enable consumers to start building freatures and deliver a production ready package of a Single Page App.
 
@@ -25,6 +26,10 @@ $ make run
 Point browser to http://localhost:9898
 
 For more detailed reference continue reading.
+
+## Rational behind the stack
+
+Check the resources [section](https://github.com/rafaelchiti/react_scaffolding/wiki/resources) for talks and explanations on WHY the stack I present here.
 
 ### Bundle process
 
