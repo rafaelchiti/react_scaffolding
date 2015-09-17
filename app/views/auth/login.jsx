@@ -37,7 +37,7 @@ export default class Login extends Component {
 
   _renderAuthenticationErrors () {
     if (this.props.authenticationError) {
-      return <div>{this.props.authenticationError}</div>
+      return <div>{this.props.authenticationError.errorMessage}</div>
     }
   }
 
