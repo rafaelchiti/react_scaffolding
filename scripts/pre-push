@@ -1,0 +1,6 @@
+#!/bin/sh
+
+echo "* Linting the code"
+make lint &&  exit 0
+echo "Linting failed!"
+exit 1

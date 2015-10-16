@@ -1,6 +1,6 @@
-import {createStore, applyMiddleware} from 'redux';
-import createLogger                   from 'redux-logger';
-import rootReducer                    from 'app/reducers';
+import {createStore, applyMiddleware} from "redux";
+import createLogger                   from "redux-logger";
+import rootReducer                    from "app/reducers";
 import asyncActionsMiddleware         from "app/middleware/async_actions_middleware";
 
 
@@ -17,8 +17,8 @@ export default function configureStore(initialState) {
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
-    module.hot.accept('app/reducers', () => {
-      const nextRootReducer = require('app/reducers');
+    module.hot.accept("app/reducers", () => {
+      const nextRootReducer = require("app/reducers");
       store.replaceReducer(nextRootReducer);
     });
   }

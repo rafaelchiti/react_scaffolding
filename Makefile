@@ -4,6 +4,14 @@ run:
 run-prod:
 	WEBPACK_DEV_SERVER=true node ./node_modules/webpack-dev-server/bin/webpack-dev-server --port 9898 --config webpack.config.prod.js --progress --inline
 
+install-githooks:
+	rm -f .git/hooks/pre-push
+	ln -s ../../scripts/pre-push ./.git/hooks/pre-push
+	chmod +x .git/hooks/pre-push
+
+lint:
+	./node_modules/.bin/eslint ./app
+
 
 #
 # Production build
