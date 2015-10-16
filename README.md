@@ -20,6 +20,7 @@ The idea is to provide a base structure that enable consumers to start building 
 To start hacking simply do:
 
 ```
+$ make install-githooks
 $ npm install
 $ make run
 ```
