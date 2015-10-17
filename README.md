@@ -15,6 +15,11 @@ An opinionated scaffolding with the following technical stack and configuration:
 
 The idea is to provide a base structure that enable consumers to start building freatures and deliver a production ready package of a Single Page App.
 
+## TO DO
+
+- [ ] Better examples of styling and way of shaing styles between css modules and js
+- [ ] Test examples for unit test with shallow rendering.
+
 ## Getting started
 
 To start hacking simply do:
