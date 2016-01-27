@@ -18,7 +18,7 @@ export default class LoginContainer extends Component {
 
   componentWillMount() {
     if (isTokenSet()) {
-      this.props.history.pushState(null, "/home");
+      this.context.router.push("/home");
     }
   }
 
@@ -36,7 +36,7 @@ export default class LoginContainer extends Component {
     dispatch(authenticate(email, password)).then((result) => {
       if (result.apiError) return;
 
-      this.props.history.pushState(null, "/home");
+      this.context.router.push("/home");
     });
   }
 

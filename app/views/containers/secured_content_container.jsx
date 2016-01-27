@@ -5,7 +5,7 @@ export default class SecuredContentContainer extends Component {
 
   componentWillMount() {
     if (!isTokenSet()) {
-      this.props.history.pushState(null, "/login");
+      this.context.router.push("/login");
     }
   }
 
