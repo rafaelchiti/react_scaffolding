@@ -10,7 +10,7 @@
   <title>React Scaffolding</title>
 
 
-  <link rel="stylesheet" type="text/css" href="{%=o.htmlWebpackPlugin.files.css%}">
+  <link rel="stylesheet" type="text/css" href="<%- htmlWebpackPlugin.files.css %>">
 </head>
 <body>
 
@@ -21,8 +21,8 @@
   -->
   <div id="reactApplication"></div>
 
-  <script type="text/javascript" src="{%=o.htmlWebpackPlugin.files.chunks['vendor'].entry%}"></script>
-  <script type="text/javascript" src="{%=o.htmlWebpackPlugin.files.chunks['app'].entry%}"></script>
+  <script type="text/javascript" src="<%- htmlWebpackPlugin.files.chunks['vendor'].entry %>"></script>
+  <script type="text/javascript" src="<%- htmlWebpackPlugin.files.chunks['app'].entry %>"></script>
 
 </body>
 </html>
