@@ -7,14 +7,16 @@ import LoginContainer                  from "app/views/containers/login_containe
 import HomeContainer                   from "app/views/containers/home_container";
 
 const routes =
-    <Route path="/" component={ApplicationContainer}>
-      <Redirect from="/" to="/home" />
+    <Route>
+        <Redirect from="/" to="/home" />
+        <Route path="/" component={ApplicationContainer}>
 
-      <Route component={SecuredContentContainer} >
-        <Route path="home" component={HomeContainer} />
-      </Route>
+          <Route component={SecuredContentContainer} >
+            <Route path="home" component={HomeContainer} />
+          </Route>
 
-      <Route path="login" component={LoginContainer} />
+          <Route path="login" component={LoginContainer} />
+        </Route>
     </Route>;
 
 export default routes;
