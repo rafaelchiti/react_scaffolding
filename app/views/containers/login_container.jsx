@@ -4,6 +4,7 @@ import {connect}          from "react-redux";
 import Login              from "app/views/auth/login";
 import {authenticate}     from "app/action_creators/session_action_creator";
 import {isTokenSet}       from "app/api/auth_token";
+import {hashHistory}      from "react-router";
 
 
 const select = (state) => ({
@@ -18,7 +19,7 @@ export default class LoginContainer extends Component {
 
   componentWillMount() {
     if (isTokenSet()) {
-      this.context.router.push("/home");
+      hashHistory.push("/home");
     }
   }
 
