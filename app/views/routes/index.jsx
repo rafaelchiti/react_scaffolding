@@ -6,6 +6,11 @@ import SecuredContentContainer         from "app/views/containers/secured_conten
 import LoginContainer                  from "app/views/containers/login_container";
 import HomeContainer                   from "app/views/containers/home_container";
 
+if (module.hot) {
+  // Don't hot reload the routes, do a refresh instead
+  module.hot.decline();
+}
+
 const routes =
     <Route>
         <Redirect from="/" to="/home" />
