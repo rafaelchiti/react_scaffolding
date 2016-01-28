@@ -4,6 +4,7 @@ import {connect}          from "react-redux";
 import Login              from "app/views/auth/login";
 import {authenticate}     from "app/action_creators/session_action_creator";
 import {isTokenSet}       from "app/api/auth_token";
+import {hashHistory}      from "react-router";
 
 
 const select = (state) => ({
@@ -18,7 +19,7 @@ export default class LoginContainer extends Component {
 
   componentWillMount() {
     if (isTokenSet()) {
-      this.props.history.pushState(null, "/home");
+      hashHistory.push("/home");
     }
   }
 
@@ -36,7 +37,7 @@ export default class LoginContainer extends Component {
     dispatch(authenticate(email, password)).then((result) => {
       if (result.apiError) return;
 
-      this.props.history.pushState(null, "/home");
+      this.context.router.push("/home");
     });
   }
 

@@ -1,7 +1,6 @@
 var webpack               = require("webpack");
 var WebpackNotifierPlugin = require("webpack-notifier");
 var HtmlWebpackPlugin     = require('html-webpack-plugin');
-var ExtractTextPlugin     = require('extract-text-webpack-plugin');
 var path                  = require("path");
 
 var webpackConfig = {
@@ -33,7 +32,7 @@ var webpackConfig = {
       // IMPORTANT: we don"t want to process EVERY single JS file with babel
       // loader. We only want to process the files inside our app structure
       // otherwise this could get very slow or even fail.
-      {test: /\.jsx?$/, exclude: /node_modules/, loaders: ["react-hot-loader", "babel-loader?optional=runtime&stage=0"]},
+      {test: /\.jsx?$/, exclude: /node_modules/, loader: "babel"},
 
       {test: /\.json$/, loader: "json-loader"},
       {test: /\.css$/,  loader: "style-loader!css-loader?modules"},
@@ -66,7 +65,8 @@ var webpackConfig = {
     new webpack.NoErrorsPlugin(),
     new webpack.optimize.CommonsChunkPlugin({name: "vendor", filename: "vendor.bundle-[hash].js", minChunks: Infinity}),
     new HtmlWebpackPlugin({
-      template: "./app/assets/index.template.html"
+      template: "./app/assets/index.template.html",
+      inject: false
     }),
     new webpack.DefinePlugin({
       "process.env": {

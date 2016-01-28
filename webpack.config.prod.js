@@ -28,7 +28,7 @@ var webpackConfig = {
       // IMPORTANT: we don"t want to process EVERY single JS file with babel
       // loader. We only want to process the files inside our app structure
       // otherwise this could get very slow or even fail.
-      {test: /\.jsx?$/, exclude: /node_modules/, loaders: ["react-hot-loader", "babel-loader?optional=runtime&stage=0"]},
+      {test: /\.jsx?$/, exclude: /node_modules/, loader: "babel"},
 
       {test: /\.json$/, loader: "json-loader"},
       {test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader?modules")},

@@ -1,10 +1,10 @@
-import React, {Component}    from "react";
-import ReactDOM              from "react-dom";
-import {Router, Route, Link} from "react-router";
-import createHashHistory     from "history/lib/createHashHistory";
-import {Provider}            from "react-redux";
-import renderRoutes          from "app/views/routes";
-import configureStore        from "app/store";
+import React, {Component}         from "react";
+import ReactDOM                   from "react-dom";
+import {Router, useRouterHistory} from "react-router";
+import { createHashHistory }      from "history";
+import {Provider}                 from "react-redux";
+import routes                     from "app/views/routes";
+import configureStore             from "app/store";
 
 // Apply the base styles for ALL the app
 import "app/assets/stylesheets/base";
@@ -20,17 +20,17 @@ class Root extends Component {
 
   constructor(props) {
     super(props);
-    this.history = createHashHistory();
+    this.history = useRouterHistory(createHashHistory)();
   }
 
   render () {
     return (
       <Provider store={store}>
-        {renderRoutes(store, this.history)}
+        <Router history={this.history} children={routes} />
       </Provider>
     )
   }
 }
 
 
-ReactDOM.render(<Root/>, document.getElementById("reactApplication"))
+ReactDOM.render(<Root/>, document.getElementById("reactApplication"));
