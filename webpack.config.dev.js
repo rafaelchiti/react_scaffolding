@@ -1,7 +1,6 @@
 var webpack               = require("webpack");
 var WebpackNotifierPlugin = require("webpack-notifier");
 var HtmlWebpackPlugin     = require('html-webpack-plugin');
-var ExtractTextPlugin     = require('extract-text-webpack-plugin');
 var path                  = require("path");
 
 var webpackConfig = {
