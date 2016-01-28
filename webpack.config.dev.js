@@ -65,7 +65,8 @@ var webpackConfig = {
     new webpack.NoErrorsPlugin(),
     new webpack.optimize.CommonsChunkPlugin({name: "vendor", filename: "vendor.bundle-[hash].js", minChunks: Infinity}),
     new HtmlWebpackPlugin({
-      template: "./app/assets/index.template.html"
+      template: "./app/assets/index.template.html",
+      inject: false
     }),
     new webpack.DefinePlugin({
       "process.env": {
