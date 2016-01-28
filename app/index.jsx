@@ -3,7 +3,7 @@ import ReactDOM                   from "react-dom";
 import {Router, useRouterHistory} from "react-router";
 import { createHashHistory }      from "history";
 import {Provider}                 from "react-redux";
-import renderRoutes               from "app/views/routes";
+import routes                     from "app/views/routes";
 import configureStore             from "app/store";
 
 // Apply the base styles for ALL the app
@@ -26,11 +26,11 @@ class Root extends Component {
   render () {
     return (
       <Provider store={store}>
-        {renderRoutes(store, this.history)}
+        <Router history={this.history} children={routes} />
       </Provider>
     )
   }
 }
 
 
-ReactDOM.render(<Root/>, document.getElementById("reactApplication"))
+ReactDOM.render(<Root/>, document.getElementById("reactApplication"));
