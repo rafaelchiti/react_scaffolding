@@ -1,7 +1,7 @@
-import React               from "react";
-import {connect}           from "react-redux";
-import {initializeSession} from "app/action_creators/session_action_creator";
-import {isTokenSet}        from "app/api/auth_token";
+import React       from 'react';
+import { connect } from 'react-redux';
+//import { initializeSession } from 'app/action_creators/session_action_creator';
+//import { isTokenSet }        from 'app/api/auth_token';
 
 const select = (state) => ({
   isInitializingSession: state.application.isInitializingSession,
@@ -14,11 +14,16 @@ const select = (state) => ({
 * sugar from here after.
 */
 @connect(select)
-export default class ApplicationContainer extends React.Component {
-
-  render () {
+class ApplicationContainer extends React.Component {
+  render() {
     return (
       <div>{this.props.children}</div>
     );
   }
 }
+
+ApplicationContainer.propTypes = {
+  children: React.PropTypes.node.isRequired
+};
+
+export default ApplicationContainer;

@@ -1,10 +1,10 @@
-import Immutable from "seamless-immutable";
+import Immutable from 'seamless-immutable';
 import {
   isPlainObject,
   isArray,
   isUndefined,
   isObject
-} from "lodash";
+} from 'lodash';
 
 /**
 * Collection of helpers to perform operations on objects/arrays.
@@ -14,23 +14,23 @@ import {
 * or just use plain objects if we want and all the reducers should work as usual.
 */
 
-/**
+/*
 * Returns a new object also containing the new key, value pair.
 * If an equivalent key already exists in this Map, it will be replaced.
 * You can use as a shortcut nexted paths (delimited by dots).
 */
-export function set (sourceObject, keyPath, value) {
+export function set(sourceObject, keyPath, value) {
   if (isPlainObject(keyPath)) {
     return sourceObject.merge(keyPath);
   }
 
-  const keys = isArray(keyPath) ? keyPath : keyPath.split(".");
+  const keys = isArray(keyPath) ? keyPath : keyPath.split('.');
 
   //TODO: This will only short circuit at the very first execution,
   // when doing recursion, we don't need this anymore and is time spent.
   // seamless-immutable is handling this in SOME of the cases, but not others
   // (remove this line and run test to see it fails). How we can improve this?
-  if(getIn(sourceObject, keys) === value) return sourceObject;
+  if (getIn(sourceObject, keys) === value) return sourceObject;
 
 
   let merged = {};
@@ -64,7 +64,7 @@ export function set (sourceObject, keyPath, value) {
 
 
 
-/**
+/*
 * Returns a new object resulting from merging the source object the new one.
 * The keyPath allows you to specify at which level to perform the merge, or if you
 * send the object to merge instead of a keyPath then it will be used to be merged
@@ -73,26 +73,27 @@ export function set (sourceObject, keyPath, value) {
 * only override existing keys with the values from the new object.
 *
 */
-export function merge (sourceObject, keyPath, object) {
+export function merge(sourceObject, keyPath, object) {
+  const deep = { deep: true };
   if (isObject(keyPath)) {
-    return sourceObject.merge(keyPath, {deep: true});
+    return sourceObject.merge(keyPath, deep);
   } else {
-    return sourceObject.merge(buildNestedObject({}, keyPath, object), {deep: true});
+    return sourceObject.merge(buildNestedObject({}, keyPath, object), deep);
   }
 }
 
-/**
+/*
 * Returns a new object containing all the keys / values from the source object
 * but the one specified in the `key` parameter.
 */
-export function without (sourceObject, key) {
+export function without(sourceObject, key) {
   return sourceObject.without(key);
 }
 
-/**
+/*
 * Wrap the object as a seamless immutable object.
 */
-export function immutable (object) {
+export function immutable(object) {
   return Immutable(object);
 }
 
@@ -103,21 +104,21 @@ export function immutable (object) {
 * Utilitary functions
 */
 
-/**
+/*
 * Private: Take a key patch such as "student.teacher.name" and a value to build
 * the nested structure with that value assigned. Also expects an initial object
 * to use for building the structure.
 * f.i:
 *   buildNestedObject({}, "student.teacher.name", "john") => {student: {teacher: {name: "john"}}}
 */
-function buildNestedObject (obj = {}, keyPath, value) {
-  const keys = isArray(keyPath) ? keyPath : keyPath.split(".");
+function buildNestedObject(obj = {}, keyPath, value) {
+  const keys = isArray(keyPath) ? keyPath : keyPath.split('.');
 
   if (keys.length === 1) {
     obj[keys[0]] = value;
   } else {
     var key = keys.shift();
-    obj[key] = buildNestedObject(typeof obj[key] === "undefined" ? {} : obj[key], keys, value);
+    obj[key] = buildNestedObject(typeof obj[key] === 'undefined' ? {} : obj[key], keys, value);
   }
 
   return obj;
@@ -125,14 +126,14 @@ function buildNestedObject (obj = {}, keyPath, value) {
 
 
 
-/**
+/*
 * Private: Return the value at the given key path.
 * keyPath can be either an array of keys or a string delimited by dots.
 * Useful for getting values in a nested object.
 * f.i: getIn(object, "key1.key2.name")
 */
-function getIn (object, keyPath) {
-  const keys = isArray(keyPath) ? keyPath : keyPath.split(".");
+function getIn(object, keyPath) {
+  const keys = isArray(keyPath) ? keyPath : keyPath.split('.');
 
   if (isUndefined(object)) { return undefined; }
 
