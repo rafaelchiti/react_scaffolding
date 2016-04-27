@@ -8,7 +8,7 @@ export default function createAsyncActionsTypes(types) {
     throw new Error('Expecting types to be an array of constants');
   }
 
-  let augmentedTypes = {};
+  const augmentedTypes = {};
 
   types.forEach((type) => {
     augmentedTypes[type] = {

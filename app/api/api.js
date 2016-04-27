@@ -1,4 +1,4 @@
-import Request           from 'superagent';
+import requestLib           from 'superagent';
 import _                 from 'lodash';
 import { CustomPromise } from 'app/utils/custom_promise';
 
@@ -35,7 +35,7 @@ function abortPendingRequestsForApiCall(apiCallName) {
 }
 
 function digestResponse(resolve, reject, error, request, response, options) {
-  var result = {};
+  const result = {};
 
 
   // Autofail with standard api error on timeout.
@@ -105,9 +105,9 @@ function executeRequestFlow(options) {
 
     const url = options.absolutePath || makeUrl(options.path);
 
-    const request = Request(options.method, url);
+    const request = requestLib(options.method, url);
 
-    var query = {};
+    const query = {};
 
     if (_(['GET', 'POST', 'PUT']).contains(options.method)) {
       request.accept('json');

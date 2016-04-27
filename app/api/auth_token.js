@@ -8,5 +8,5 @@ export function getToken() {
 }
 
 export function isTokenSet() {
-  return window.localStorage.getItem('token') ? true : false;
+  return typeof window.localStorage.getItem('token') === 'string';
 }

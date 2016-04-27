@@ -1,4 +1,4 @@
-import Immutable from 'seamless-immutable';
+import immutableLib from 'seamless-immutable';
 import {
   isPlainObject,
   isArray,
@@ -33,31 +33,31 @@ export function set(sourceObject, keyPath, value) {
   if (getIn(sourceObject, keys) === value) return sourceObject;
 
 
-  let merged = {};
+  const merged = {};
   if (keys.length === 1) {
     if (isPlainObject(sourceObject)) {
       merged[keys[0]] = value;
       return sourceObject.merge(merged);
     } else if (isArray(sourceObject)) {
-      let newObject = sourceObject.asMutable();
+      const newObject = sourceObject.asMutable();
       newObject[keys[0]] = value;
-      return Immutable(newObject);
+      return immutableLib(newObject);
     } else if (isUndefined(sourceObject)) {
-      let newObject = {};
+      const newObject = {};
       newObject[keys[0]] = value;
-      return Immutable(newObject);
+      return immutableLib(newObject);
     }
   } else {
     if (isPlainObject(sourceObject)) {
       merged[keys[0]] = set(sourceObject[keys[0]], keys.slice(1), value);
       return sourceObject.merge(merged);
     } else if (isArray(sourceObject)) {
-      let newObject = sourceObject.asMutable();
+      const newObject = sourceObject.asMutable();
       newObject[keys[0]] = set(sourceObject[keys[0]], keys.slice(1), value);
-      return Immutable(newObject);
+      return immutableLib(newObject);
     } else if (isUndefined(sourceObject)) {
       merged[keys[0]] = set(undefined, keys.slice(1), value);
-      return Immutable(merged);
+      return immutableLib(merged);
     }
   }
 }
@@ -94,7 +94,7 @@ export function without(sourceObject, key) {
 * Wrap the object as a seamless immutable object.
 */
 export function immutable(object) {
-  return Immutable(object);
+  return immutableLib(object);
 }
 
 
@@ -117,7 +117,7 @@ function buildNestedObject(obj = {}, keyPath, value) {
   if (keys.length === 1) {
     obj[keys[0]] = value;
   } else {
-    var key = keys.shift();
+    const key = keys.shift();
     obj[key] = buildNestedObject(typeof obj[key] === 'undefined' ? {} : obj[key], keys, value);
   }
 
