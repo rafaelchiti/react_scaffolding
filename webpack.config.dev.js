@@ -19,12 +19,13 @@ const webpackConfig = {
     proxy: {
       '/api/*': 'http://localhost:5000'
     },
-
+    historyApiFallback: true,
     contentBase: './build/dev_build'
   },
   output: {
     path: './build/dev_build',
-    filename: 'app.bundle-[hash].js'
+    filename: 'app.bundle-[hash].js',
+    publicPath: '/'
   },
   devtool: '#cheap-module-eval-source-map',
   module: {

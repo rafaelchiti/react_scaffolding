@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { browserHistory }   from 'react-router';
 import { connect }          from 'react-redux';
 import Login                from 'app/views/auth/login';
 import { authenticate }     from 'app/action_creators/session_action_creator';
@@ -17,7 +18,7 @@ class LoginContainer extends Component {
 
   componentWillMount() {
     if (isTokenSet()) {
-      this.props.history.pushState(null, '/home');
+      browserHistory.push('/home');
     }
   }
 
@@ -27,7 +28,7 @@ class LoginContainer extends Component {
     dispatch(authenticate(email, password)).then((result) => {
       if (result.apiError) return;
 
-      this.props.history.pushState(null, '/home');
+      browserHistory.push(null, '/home');
     });
   }
 
@@ -42,9 +43,6 @@ class LoginContainer extends Component {
 
 }
 LoginContainer.propTypes = {
-  history: React.PropTypes.shape({
-    pushState: React.PropTypes.func
-  }),
   authenticationError: React.PropTypes.shape({}),
   dispatch: React.PropTypes.func
 };

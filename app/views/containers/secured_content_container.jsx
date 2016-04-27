@@ -1,11 +1,12 @@
 import React, { Component }  from 'react';
+import { browserHistory }   from 'react-router';
 import { isTokenSet } from 'app/api/auth_token';
 
 class SecuredContentContainer extends Component {
 
   componentWillMount() {
     if (!isTokenSet()) {
-      this.props.history.pushState(null, '/login');
+      browserHistory.push('/login');
     }
   }
 
@@ -15,9 +16,6 @@ class SecuredContentContainer extends Component {
 }
 
 SecuredContentContainer.propTypes = {
-  history: React.PropTypes.shape({
-    pushState: React.PropTypes.func
-  }),
   children: React.PropTypes.node.isRequired
 };
 

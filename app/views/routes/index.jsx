@@ -1,15 +1,15 @@
-import React                           from 'react';
-import { Router, Route, Redirect }     from 'react-router';
+import React                                        from 'react';
+import { Router, Route, Redirect, browserHistory }  from 'react-router';
 
-import ApplicationContainer            from 'app/views/containers/application_container';
-import SecuredContentContainer         from 'app/views/containers/secured_content_container';
-import LoginContainer                  from 'app/views/containers/login_container';
-import HomeContainer                   from 'app/views/containers/home_container';
+import ApplicationContainer                         from 'app/views/containers/application_container';
+import SecuredContentContainer                      from 'app/views/containers/secured_content_container';
+import LoginContainer                               from 'app/views/containers/login_container';
+import HomeContainer                                from 'app/views/containers/home_container';
 
 
-export default function renderRoutes(store, history) {
+export default function renderRoutes(store) {
   return (
-    <Router history={history}>
+    <Router history={browserHistory}>
       <Redirect from="/" to="/home" />
       <Route path="/" component={ApplicationContainer}>
         <Route component={SecuredContentContainer} >

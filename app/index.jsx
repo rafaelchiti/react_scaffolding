@@ -1,6 +1,6 @@
 import React, { Component }    from 'react';
 import ReactDOM                from 'react-dom';
-import createHashHistory       from 'history/lib/createHashHistory';
+import { browserHistory }      from 'react-router';
 import { Provider }            from 'react-redux';
 import renderRoutes            from 'app/views/routes';
 import configureStore          from 'app/store';
@@ -17,13 +17,12 @@ class Root extends Component {
 
   constructor(props) {
     super(props);
-    this.history = createHashHistory();
   }
 
   render() {
     return (
       <Provider store={store}>
-        {renderRoutes(store, this.history)}
+        {renderRoutes(store, browserHistory)}
       </Provider>
     );
   }

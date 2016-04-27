@@ -13,9 +13,13 @@ const webpackConfig = {
   },
   output: {
     path: './build/prod_build',
-    filename: 'app.bundle-[chunkhash].js'
+    filename: 'app.bundle-[chunkhash].js',
+    publicPath: '/'
   },
-  devServer: process.env.WEBPACK_DEV_SERVER ? { contentBase: './build/prod_build' } : {},
+  devServer: process.env.WEBPACK_DEV_SERVER ? {
+    contentBase: './build/prod_build',
+    historyApiFallback: true
+  } : {},
   module: {
     loaders: [
       // IMPORTANT: we don"t want to process EVERY single JS file with babel
@@ -25,8 +29,7 @@ const webpackConfig = {
         exclude: /node_modules/,
         loaders: [
           'react-hot-loader',
-          'babel-loader',
-          'webpack-strip?strip[]=debug,strip[]=debug.*,strip[]=console.log'
+          'babel-loader'
         ]
       },
       { test: /\.json$/, loader: 'json-loader' },
