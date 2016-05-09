@@ -1,6 +1,5 @@
 import React                                        from 'react';
 import { Router, Route, Redirect, browserHistory }  from 'react-router';
-
 import ApplicationContainer                         from 'app/views/containers/application_container';
 import SecuredContentContainer                      from 'app/views/containers/secured_content_container';
 import LoginContainer                               from 'app/views/containers/login_container';

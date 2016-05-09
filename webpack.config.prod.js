@@ -7,6 +7,7 @@ const path                  = require('path');
 const webpackConfig = {
   entry: {
     app: [
+      'babel-polyfill', // Set up an ES6-ish environment
       './app/index.jsx'
     ],
     vendor: './app/vendors/index.js'
@@ -40,8 +41,7 @@ const webpackConfig = {
       { test: /\.gif/, loader: 'file' },
       { test: /\.mp3/, loader: 'file' },
       { test: /\.woff2?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'file-loader?mimetype=application/font-woff' },
-      { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'file-loader' },
-      { test: /\.jsx$/, exclude: /node_modules/, loader: 'webpack-strip?strip[]=debug,strip[]=debug.*,strip[]=console.log' }
+      { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'file-loader' }
     ]
   },
   resolve: {

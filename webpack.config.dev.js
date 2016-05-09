@@ -7,6 +7,7 @@ const path                  = require('path');
 const webpackConfig = {
   entry: {
     app: [
+      'babel-polyfill', // Set up an ES6-ish environment
       'webpack-dev-server/client?http://localhost:9898', // WebpackDevServer host and port
       'webpack/hot/only-dev-server',
       './app/index.jsx'
