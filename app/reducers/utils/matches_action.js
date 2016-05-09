@@ -1,6 +1,6 @@
-import {isString} from "lodash";
+import { isString } from 'lodash';
 
-/**
+/*
 * Returns true if there is any match, either a sync action
 * or the action provided matches one of the sub types of an async action.
 * This means that matchesAction(Types.ASYNC_ACTION) will match

@@ -1,29 +1,29 @@
-import Request         from "superagent";
-import _               from "lodash";
-import {CustomPromise} from "app/utils/custom_promise";
+import requestLib           from 'superagent';
+import _                 from 'lodash';
+import { CustomPromise } from 'app/utils/custom_promise';
 
-var TIMEOUT = 15000;
+const TIMEOUT = 15000;
 
 function makeUrl(url) {
   if (_.isArray(url)) {
-    url = "/" + url.join("/");
+    url = '/' + url.join('/');
   }
-  url = "/api" + url;
+  url = '/api' + url;
   return url;
 }
 
-function removeValue (arr, v) {
+function removeValue(arr, v) {
   _.remove(arr, (item) => item === v);
 }
 
-var _pendingRequests = [];
+const _pendingRequests = [];
 
 // Abor the requests for the Api Call with the specified name.
 // Be careful since won"t make any difference if the same api call gets
 // called with diffrent query strings or body, this feature stops any
 // pending call for the specified Api Call
 function abortPendingRequestsForApiCall(apiCallName) {
-  var pendingRequest = _.find(_pendingRequests, (pending) => {
+  const pendingRequest = _.find(_pendingRequests, (pending) => {
     return pending._apiCallName === apiCallName;
   });
 
@@ -35,60 +35,55 @@ function abortPendingRequestsForApiCall(apiCallName) {
 }
 
 function digestResponse(resolve, reject, error, request, response, options) {
-
-
-  var result = {};
+  const result = {};
 
 
   // Autofail with standard api error on timeout.
   if (error && error.timeout >= 0) {
-    result.apiError = "TIMEOUT";
+    result.apiError = 'TIMEOUT';
     reject(result);
 
   // Auto-fail with special auth error on 401.
   } else if (response.status === 401 && !options.ignoreAuthFailure) {
-    result.apiError = "AUTH_ERROR";
+    result.apiError = 'AUTH_ERROR';
     reject(result);
 
   // Auto-fail with special api down error on 502 - 504.
   // IE can do weird things with 5xx errors like call them 12031s.
   } else if ((response.status >= 502 && response.status <= 504) || response.status > 12000) {
-    result.apiError = "500_ERROR";
+    result.apiError = '500_ERROR';
     reject(result);
-
   } else if (response.status === 429) {
-    result.apiError = "RATE_LIMIT_ERROR";
+    result.apiError = 'RATE_LIMIT_ERROR';
     reject(result);
-
   } else {
-
     response.body = response.body || {}; // patch response.body if nonexistant
 
     let gotExpectedResponse;
-    let parser = options.parse || defaultParser;
+    const parser = options.parse || defaultParser;
 
-    let done = function (data) {
+    const done = function (data) {
       gotExpectedResponse = true;
       result.apiResponse = data || {};
       resolve(result);
     };
 
-    let fail = function (err) {
+    const fail = function (err) {
       gotExpectedResponse = true;
       result.apiError = err;
       reject(result);
     };
 
-    let pass = function() {
+    const pass = function () {
       // do nothing.  don"t resolve or reject the promise.
       gotExpectedResponse = true;
     };
 
-    parser.call({done, fail, pass}, response);
+    parser.call({ done, fail, pass }, response);
 
     // Our parser did not get a response it understands
     if (!gotExpectedResponse) {
-      result.apiError = "UNKOWN ERROR";
+      result.apiError = 'UNKOWN ERROR';
       reject(result);
     }
   }
@@ -106,21 +101,20 @@ function isSuccessStatus(status) {
 
 function executeRequestFlow(options) {
   return new CustomPromise(function (resolve, reject) {
+    options.method = options.method || 'GET';
 
-    options.method = options.method || "GET";
+    const url = options.absolutePath || makeUrl(options.path);
 
-    let url = options.absolutePath || makeUrl(options.path);
+    const request = requestLib(options.method, url);
 
-    var request = Request(options.method, url);
+    const query = {};
 
-    var query = {};
-
-    if (_(["GET", "POST", "PUT"]).contains(options.method)) {
-      request.accept("json");
-      request.type("json");
+    if (_(['GET', 'POST', 'PUT']).contains(options.method)) {
+      request.accept('json');
+      request.type('json');
     }
 
-    if (_(["POST", "PUT"]).contains(options.method)) {
+    if (_(['POST', 'PUT']).contains(options.method)) {
       options.body = options.body || {};
     }
 
@@ -131,7 +125,7 @@ function executeRequestFlow(options) {
       request.send(options.body);
       Object.keys(options.body).forEach(function (key) {
         if (options.body[key] === undefined) {
-          console.warn("Key was undefined in request body:", key);
+          console.warn('Key was undefined in request body:', key);
         }
       });
     }
@@ -149,9 +143,8 @@ function executeRequestFlow(options) {
 
     // Prevent concurrent calls for the same Api Call type.
     if (options.cancelPendingRequests) {
-
-      if (request._apiCallName) console.log("WARNING: Prop clashing with request object");
-      if (!options.apiCallName) console.log("WARNING: To cancel previous calls the Api Call needs a name defined.");
+      if (request._apiCallName) console.log('WARNING: Prop clashing with request object');
+      if (!options.apiCallName) console.log('WARNING: To cancel previous calls the Api Call needs a name defined.');
 
       request._apiCallName = options.apiCallName;
 
@@ -169,31 +162,31 @@ function executeRequestFlow(options) {
 }
 
 // API Interface
-var Api = {
+const Api = {
   execute: executeRequestFlow,
 
   get: function (options) {
-    options.method = "GET";
+    options.method = 'GET';
     return executeRequestFlow(options);
   },
 
   put: function (options) {
-    options.method = "PUT";
+    options.method = 'PUT';
     return executeRequestFlow(options);
   },
 
   post: function (options) {
-    options.method = "POST";
+    options.method = 'POST';
     return executeRequestFlow(options);
   },
 
   delete: function (options) {
-    options.method = "DELETE";
+    options.method = 'DELETE';
     return executeRequestFlow(options);
   },
 
   head: function (options) {
-    options.method = "HEAD";
+    options.method = 'HEAD';
     return executeRequestFlow(options);
   },
 
@@ -204,6 +197,3 @@ var Api = {
 };
 
 module.exports = Api;
-
-
-
