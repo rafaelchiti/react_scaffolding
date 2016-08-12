@@ -10,9 +10,13 @@ import {isTokenSet}       from "app/api/auth_token";
 */
 class LoginContainer extends Component {
 
+  static contextTypes = {
+    router: React.PropTypes.object.isRequired
+  }
+
   componentWillMount() {
     if (isTokenSet()) {
-      this.props.history.pushState(null, "/home");
+      this.context.router.push("/home");
     }
   }
 
@@ -36,7 +40,7 @@ class LoginContainer extends Component {
 
 }
 
-const select = (state) => ({
+const mapStateToProps = (state) => ({
   authenticationError: state.session.authenticationError
 });
-export default connect(select)
+export default connect(mapStateToProps)(LoginContainer);

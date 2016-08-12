@@ -16,8 +16,8 @@ class ApplicationContainer extends React.Component {
 * Application gets composed by redux therefore we can access to all the redux
 * sugar from here after.
 */
-const select = (state) => ({
+const mapStateToProps = (state) => ({
   isInitializingSession: state.application.isInitializingSession,
   sessionValid: state.application.sessionValid
 });
-export default connect(select)
+export default connect(mapStateToProps)(ApplicationContainer);

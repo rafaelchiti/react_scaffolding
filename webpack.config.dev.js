@@ -18,6 +18,13 @@ module.exports = {
   stats: {
     colors: true
   },
+  devServer: {
+    // Configuration in case you need to proxy calls to an api
+    proxy: {
+      "/api/*": "http://localhost:5000"
+    },
+    contentBase: "./build/dev_build"
+  },
   entry: {
     app: [
       'webpack-hot-middleware/client',

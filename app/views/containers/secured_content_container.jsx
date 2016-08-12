@@ -3,9 +3,13 @@ import {isTokenSet}       from "app/api/auth_token";
 
 export default class SecuredContentContainer extends Component {
 
+  static contextTypes = {
+    router: React.PropTypes.object.isRequired
+  }
+
   componentWillMount() {
     if (!isTokenSet()) {
-      this.props.history.pushState(null, "/login");
+      this.context.router.push("/login");
     }
   }
 

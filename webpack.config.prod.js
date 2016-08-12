@@ -13,7 +13,12 @@ module.exports = {
   devtool: 'source-map',
   devServer: {
     headers: { 'Access-Control-Allow-Origin': '*' },
-    noInfo: true
+    noInfo: true,
+    // Configuration in case you need to proxy calls to an api
+    proxy: {
+      "/api/*": "http://localhost:5000"
+    },
+    contentBase: "./build/dev_build"
   },
   stats: {
     colors: true
