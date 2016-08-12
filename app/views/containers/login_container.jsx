@@ -5,16 +5,10 @@ import Login              from "app/views/auth/login";
 import {authenticate}     from "app/action_creators/session_action_creator";
 import {isTokenSet}       from "app/api/auth_token";
 
-
-const select = (state) => ({
-  authenticationError: state.session.authenticationError
-});
-
 /**
 * This is the entry point for any page that requires a logged in user
 */
-@connect(select)
-export default class LoginContainer extends Component {
+class LoginContainer extends Component {
 
   componentWillMount() {
     if (isTokenSet()) {
@@ -42,6 +36,7 @@ export default class LoginContainer extends Component {
 
 }
 
-
-
-
+const select = (state) => ({
+  authenticationError: state.session.authenticationError
+});
+export default connect(select)

@@ -1,4 +1,3 @@
-
 /**
 * Simple helper for creating sync actions types.
 * It just retrieves an object wiht the type as key and the type as value.

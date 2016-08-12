@@ -4,13 +4,10 @@ const list = [
   require("./session"),
 ];
 
-
 /*
 * Export the merged list of action types.
 */
 export default list.reduce((result, actionTypes) => tryMerge(result, actionTypes), {});
-
-
 
 /**
 * Little helper only for Dev, just throw if we find an Action that already exists

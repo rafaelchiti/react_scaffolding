@@ -1,4 +1,3 @@
-
 export function storeToken (token) {
   return window.localStorage.setItem("token", token);
 }

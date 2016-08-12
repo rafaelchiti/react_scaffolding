@@ -23,7 +23,6 @@
     "curly": 0,
     "no-trailing-spaces": 0,
     "semi-spacing": 0,
-    "semi-spacing": 0,
     "no-unused-expressions": 0,
     "eol-last": 0,
     "dot-notation": [2, {"allowPattern": "^NODE_ENV$"}],
@@ -42,7 +41,6 @@
     "rewire" : true,
     "testHelpers": true,
     "expect" : true,
-    "sinon" : true,
     "should" : true,
     "makeSrcPath": true,
     "assert" : true
