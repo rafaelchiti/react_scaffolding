@@ -7,9 +7,9 @@ updateSingletonEnvValues();
 
 
 function getEnvValues () {
-  isTesting = process && process.env.NODE_ENV === "testing";
-  isDev = process && process.env.NODE_ENV === "development";
-  isProd = process && process.env.NODE_ENV === "production";
+  isTesting = process && process.env.NODE_ENV === 'testing';
+  isDev = process && process.env.NODE_ENV === 'development';
+  isProd = process && process.env.NODE_ENV === 'production';
 }
 
 function updateSingletonEnvValues () {

@@ -13,11 +13,11 @@ An opinionated scaffolding with the following technical stack and configuration:
 * Babel
 * Testing mocha + shallow rendering with React
 
-The idea is to provide a base structure that enable consumers to start building freatures and deliver a production ready package of a Single Page App.
+The idea is to provide a base structure that enable consumers to start building features and deliver a production ready package of a Single Page App.
 
 ## TO DO
 
-- [ ] Better examples of styling and way of shaing styles between css modules and js
+- [ ] Better examples of styling and way of sharing styles between css modules and js
 - [ ] Test examples for unit test with shallow rendering.
 
 ## Getting started

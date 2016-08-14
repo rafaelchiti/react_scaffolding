@@ -5,7 +5,7 @@ The action creator will get the type from our list of action types and return a 
 with extra parameters if they are required as well as an Api Call in case of an async action.
 
 Our action creators follow the convention from Redux, for more information on it check the docs
-on redux site ([link](http://rackt.github.io/redux/docs/basics/Actions.html))
+on redux site ([link](http://redux.js.org/docs/basics/Actions.html))
 
 Is important to notice that Action Creators when called they DO NOTHING but create an object
 that represents our action, we need to perform a 'dispatch' of this object to actually create

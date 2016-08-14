@@ -1,24 +1,32 @@
-import Api from "./api";
+const EMAIL = 'rafael@mail.com';
 
-const ApiCalls = {
-
-  authenticate ({email, password}) {
-    return Api.post({
-      path: "/authenticate",
-      body: {email: email, password: password},
-      ignoreAuthFailure: true,
-      parse: function(res) {
-        if (res.body.errorMessage) {
-          this.fail({errorMessage: res.body.errorMessage});
-        }
-        if (res.body.token && res.body.user) {
-          this.done(res.body);
-        }
+// Simulate a proper API response with a timeout just for development
+// purpose
+export function authenticate ({ email, password }) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (email === EMAIL && password === 'password') {
+        resolve(validAuthBody);
+      } else {
+        reject(invalidAuthBody);
       }
-    });
-  }
-
+    }, 700);
+  });
 }
 
+const validAuthBody = {
+  apiResponse: {
+    token: 'token',
+    user: {
+      email: EMAIL,
+      name: 'Rafael',
+      lastName: 'Chiti'
+    }
+  }
+};
 
-export default ApiCalls;
+const invalidAuthBody = {
+  apiError: {
+    errorMessage: 'Email or password incorrect'
+  }
+};
