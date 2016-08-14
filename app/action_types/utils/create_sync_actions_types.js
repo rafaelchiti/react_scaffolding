@@ -4,12 +4,12 @@
 */
 export default function createSyncActionsTypes (types) {
   if (!Array.isArray(types)) {
-    throw new Error("Expecting types to be an array of constants");
+    throw new Error('Expecting types to be an array of constants');
   }
 
-  let augmentedTypes = {};
+  const augmentedTypes = {};
 
-  types.forEach( type => {
+  types.forEach((type) => {
     augmentedTypes[type] = type;
   });
 

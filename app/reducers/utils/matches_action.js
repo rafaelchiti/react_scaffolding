@@ -1,4 +1,4 @@
-import {isString} from "lodash";
+import { isString } from 'lodash';
 
 /**
 * Returns true if there is any match, either a sync action
@@ -7,7 +7,7 @@ import {isString} from "lodash";
 * ASYNC_ACTION.request, ASYNC_ACTION.done, ASYNC_ACTION.fail.
 *
 */
-export default function matchesAction(action, actionTest) {
+export default function matchesAction (action, actionTest) {
   if (isString(actionTest)) {
     if (action.type === actionTest) {
       return true;

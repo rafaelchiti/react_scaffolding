@@ -1,5 +1,5 @@
-import {CustomPromise}        from "app/utils/custom_promise";
-import {isString, isObject} from "lodash";
+import { CustomPromise }        from 'app/utils/custom_promise';
+import { isString, isObject } from 'lodash';
 
 /**
 * Middleware to accept actions like:
@@ -26,7 +26,7 @@ export default function callAPIMiddleware ({ dispatch, getState }) {
       } = action;
 
       if (!type) {
-        throw new Error("Not type provided for the action");
+        throw new Error('Not type provided for the action');
       }
 
       // Validate the type provided
@@ -36,7 +36,6 @@ export default function callAPIMiddleware ({ dispatch, getState }) {
         }
         // This is a sync action, just dispatch and return.
         return next(action);
-
       }
 
       if (isObject(type)) {
@@ -44,22 +43,20 @@ export default function callAPIMiddleware ({ dispatch, getState }) {
         if (!isString(type.done)) throw new Error(`Action type.request is expected to be a String. The value provided was: [${type.request}]`);
         if (!isString(type.fail)) throw new Error(`Action type.request is expected to be a String. The value provided was: [${type.request}]`);
       } else {
-        throw new Error("Action type was expected to be an Object or a String.");
+        throw new Error('Action type was expected to be an Object or a String.');
       }
 
       // We are in presence of a async action, therefore validate it has a
       // api call.
-      if (typeof callAPI !== "function") {
-        throw new Error("Expected fetch to be a function.");
+      if (typeof callAPI !== 'function') {
+        throw new Error('Expected fetch to be a function.');
       }
 
       if (!shouldCallAPI(getState())) {
         return;
       }
 
-
-      dispatch({payload: payload, type: type.request});
-
+      dispatch({ payload: payload, type: type.request });
 
       // Always return a 'resolved' promise. This means that we don't need
       // to use .catch or .then(null, errorHandler) when consuming the result
@@ -68,8 +65,8 @@ export default function callAPIMiddleware ({ dispatch, getState }) {
       // an expected negative flow or a positive flow, you can eaily do that
       // by checking on the params .then((result) => result.error) f.i.
       return callAPI().then(
-        (result) => CustomPromise.resolve(dispatch({payload: payload, apiResponse: result.apiResponse, type: type.done})),
-        (result) => CustomPromise.resolve(dispatch({payload: payload, apiError: result.apiError, type: type.fail}))
+        (result) => CustomPromise.resolve(dispatch({ payload: payload, apiResponse: result.apiResponse, type: type.done })),
+        (result) => CustomPromise.resolve(dispatch({ payload: payload, apiError: result.apiError, type: type.fail }))
       );
     };
   };

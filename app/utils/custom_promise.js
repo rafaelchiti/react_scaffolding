@@ -1,4 +1,4 @@
-import env from "app/utils/env";
+import env from 'app/utils/env';
 
 let CustomPromise = Promise;
 
@@ -63,5 +63,3 @@ export {
 *    and you get proper stack traces, so this is always an option at least for
 *    development.
 */
-
-

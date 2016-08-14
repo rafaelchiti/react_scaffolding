@@ -1,48 +1,117 @@
 {
-  parser: "babel-eslint",
-  "ecmaFeatures": {
-    "jsx": true,
-    "modules": true
-  },
+  "parser": "babel-eslint",
   "env": {
     "browser": true,
-    "node": true,
     "es6": true,
+    "node": true,
     "mocha": true
   },
-  "rules": {
-    "consistent-return": 0,
-    "strict": 0,
-    "no-underscore-dangle": 0,
-    "no-multi-spaces": 0,
-    "quotes": [ 2 ],
-    "new-cap": 0,
-    "comma-spacing": 0,
-    "no-use-before-define": 0,
-    "camelcase": 0,
-    "curly": 0,
-    "no-trailing-spaces": 0,
-    "semi-spacing": 0,
-    "no-unused-expressions": 0,
-    "eol-last": 0,
-    "dot-notation": [2, {"allowPattern": "^NODE_ENV$"}],
-    "no-extend-native": 0,
-    "comma-dangle": 0,
-    "no-redeclare": 1,
-    "no-shadow": 1
+
+  "parserOptions": {
+    "ecmaFeatures": {
+      "ecmaVersion": 6,
+      "sourceType": "module",
+      "jsx": true
+    },
   },
+
+  "globals": {
+    "BROWSER": true,
+    "FB": true,
+    "window": true
+  },
+
   "plugins": [
     "react"
   ],
-  "globals": {
-    // testing globals
-    "_": true,
-    "sinon": true,
-    "rewire" : true,
-    "testHelpers": true,
-    "expect" : true,
-    "should" : true,
-    "makeSrcPath": true,
-    "assert" : true
+
+  "rules": {
+    "array-bracket-spacing": [2, "never"],
+    "arrow-parens": [2, "always"],
+    "block-spacing": [2, "always"],
+    "brace-style": [2, "1tbs", { "allowSingleLine": true }],
+    "camelcase": [2, {"properties": "always"}],
+    "comma-dangle": [2, "never"],
+    "comma-spacing": [2, {"before": false, "after": true}],
+    "comma-style": [2, "last"],
+    "computed-property-spacing": [2, "never"],
+    "consistent-return": [0],
+    "dot-notation": [2],
+    "indent": [2, 2],
+    "key-spacing": [2, {"beforeColon": false, "afterColon": true}],
+    "keyword-spacing": [2],
+    "new-cap": [2],
+    "no-debugger": [2],
+    "no-dupe-args": 2,
+    "no-dupe-keys": 2,
+    "no-duplicate-case": 2,
+    "no-extra-boolean-cast": 2,
+    "no-extra-semi": 2,
+    "no-func-assign": 2,
+    "no-unreachable": 2,
+    "no-multi-spaces": [0],
+    "no-multi-str": 0,
+    "no-trailing-spaces": [2],
+    "no-mixed-spaces-and-tabs": [2],
+    "no-restricted-syntax": [2, "WithStatement"],
+    "no-spaced-func": 2,
+    "no-empty": 2,
+    "no-shadow": [0],
+    "no-var": [2],
+    "no-unneeded-ternary": 2,
+    "no-cond-assign": 2,
+    "no-const-assign": [2],
+    "no-unused-vars": [2, {"vars": "all", "args": "none"}],
+    "no-unused-expressions": 2,
+    "object-curly-spacing": [2, "always"],
+    "prefer-const": [2],
+    "padded-blocks": [2, {"classes": "always"}],
+    "quotes": [2, "single", {"avoidEscape": true, "allowTemplateLiterals": true}],
+    "quote-props": [2, "as-needed"],
+    "space-in-parens": [2, "never"],
+    "strict": [2, "never"],
+    "semi": [2, "always"],
+    "semi-spacing": [2, {"before": false, "after": true}],
+    "space-before-function-paren": [2, {"anonymous": "always", "named": "always"}],
+    "space-before-blocks": 2,
+    "space-unary-ops": [2, { "words": true, "nonwords": false }],
+    "space-infix-ops": [2],
+    "use-isnan": 2,
+    "valid-typeof": 2,
+    "wrap-iife": [2, "outside"],
+    "yoda": [2, "never"],
+
+    "react/jsx-uses-vars": [2],
+    "react/jsx-no-undef": [2],
+    "react/jsx-pascal-case": [2],
+    "react/jsx-no-duplicate-props": [2],
+    "react/jsx-uses-react": [2],
+    "react/jsx-key": 2,
+    "react/jsx-closing-bracket-location": 2,
+    "react/jsx-equals-spacing": [2, "never"],
+    "react/jsx-curly-spacing": [2, "never"],
+    "react/jsx-indent": [2, 2],
+    "react/jsx-indent-props": [2, 2],
+    "react/jsx-boolean-value": [2, "never"],
+    "react/jsx-handler-names": [2, {
+      "eventHandlerPrefix": "handle",
+      "eventHandlerPropPrefix": "on[A-Z]"
+    }],
+    "react/display-name": [2, { "ignoreTranspilerName": false }],
+    "react/no-did-mount-set-state": 2,
+    "react/no-did-update-set-state": 2,
+    "react/no-unknown-property": [2],
+    "react/prop-types": 2,
+    "react/prefer-es6-class": 2,
+    "react/wrap-multilines": 2,
+    "react/sort-comp": [2, {
+      "order": [
+        "lifecycle",
+        "everything-else",
+        "/^handle.+$/",
+        "/^render.+$/",
+        "render"
+      ]
+    }]
   }
 }

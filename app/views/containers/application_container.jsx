@@ -1,14 +1,18 @@
-import React               from "react";
-import {connect}           from "react-redux";
-import {initializeSession} from "app/action_creators/session_action_creator";
-import {isTokenSet}        from "app/api/auth_token";
+import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
 
 class ApplicationContainer extends React.Component {
+
+  static propTypes = {
+    children: PropTypes.element
+  }
+
   render () {
     return (
       <div>{this.props.children}</div>
     );
   }
+
 }
 
 /**
