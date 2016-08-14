@@ -2,8 +2,8 @@
 
 An opinionated scaffolding with the following technical stack and configuration:
 
-* React  (0.14.x)
-* React Router (1.x)
+* React  (15.x.x)
+* React Router (2.x)
 * Flux by using Redux (3.x)
 * Webpack
 * CSS Modules
